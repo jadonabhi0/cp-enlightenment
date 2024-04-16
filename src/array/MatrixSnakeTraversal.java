@@ -13,8 +13,6 @@ public class MatrixSnakeTraversal {
         print(mat);
 
     }
-
-
     public static void print(int[][]  matrix) {
         int rows =  matrix.length;
         int cols =  matrix[0].length;
