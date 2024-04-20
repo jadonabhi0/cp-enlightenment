@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Main {
@@ -6,6 +7,5 @@ public class Main {
         System.out.println("Hello world!");
 
         ArrayList<ArrayList<Integer>> list  =  new ArrayList<>();
-        list.add((ArrayList<Integer>) List.of(1, 2));
     }
 }

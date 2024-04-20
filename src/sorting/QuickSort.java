@@ -31,10 +31,10 @@ public class QuickSort {
             while (lo < array.length &&  array[lo] < pivot) lo++;
             while (hi > 0 && array[hi] > pivot) hi--;
             if (hi <= lo) {
-                swap(array, hi, pivIdx);
+                swap(array, hi, pivIdx); // swap with pivot
                 return hi;
             }
-            else swap(array, lo, hi);
+            else swap(array, lo, hi); // swap both pointers
         }
 
        return hi;
