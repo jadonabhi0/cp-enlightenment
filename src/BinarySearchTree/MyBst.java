@@ -6,6 +6,10 @@
  */
 package BinarySearchTree;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 public class MyBst {
 
     /**
@@ -100,11 +104,138 @@ public class MyBst {
     /**
      * Method to perform inorder traversal of the BST.
      */
-    public void inorderTraversal(){
+    public void inorderRecursive(){
         // Start inorder traversal from the root of the tree
         inorderTraversalInternal(root);
         // Print a new line after traversal
         System.out.println();
+    }
+
+
+    public void inorderIterative(){
+
+        Stack<Node> st = new Stack<>();
+        Node current = this.root;
+
+        while(current != null || !st.isEmpty()){
+
+            while(current != null){
+                st.push(current);
+                current = current.left;
+            }
+
+            current = st.pop();
+            System.out.print(current.data + " ");
+            current = current.right;
+        }
+
+        System.out.println();
+
+    }
+
+
+    public void preOrderRecursive(){
+        preOrderHelper(this.root);
+        System.out.println();
+    }
+
+    private void preOrderHelper(Node root) {
+        if (root == null) return;
+        System.out.print(root.data + " ");
+        preOrderHelper(root.left);
+        preOrderHelper(root.right);
+    }
+
+
+    public void preOrderIterative(){
+
+        Stack<Node> st = new Stack<>();
+        Node curr = this.root;
+
+        while (curr != null || !st.isEmpty()){
+
+            while (curr != null){
+                System.out.print(curr.data + " ");
+                st.push(curr);
+                curr = curr.left;
+            }
+
+            curr = st.pop();
+            curr = curr.right;
+        }
+        System.out.println();
+    }
+
+    public void postOrderRecursive(){
+        postOrderHelper(this.root);
+        System.out.println();
+    }
+
+    private void postOrderHelper(Node root) {
+        if (root == null) return;
+        postOrderHelper(root.left);
+        postOrderHelper(root.right);
+        System.out.print(root.data + " ");
+    }
+
+
+    public void postOrderIterative(){
+
+        String ans = "";
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            Node current = stack.pop();
+            if (current != null) {
+                // Add node value to the beginning of the list
+                ans = current.data + " " + ans;
+                // Push left child first so that right child is processed first
+                if (current.left != null)
+                    stack.push(current.left);
+                if (current.right != null)
+                    stack.push(current.right);
+            }
+        }
+        System.out.println(ans);
+    }
+
+
+    public Node deleteNode(int data){
+        return deleteHelper(this.root, data);
+    }
+
+    private Node deleteHelper(Node node, int data){
+
+        if (node == null) return null;
+
+        if (node.data == data){
+            if (node.left == null && node.right == null) return null;
+            else if (node.left == null) {
+                return node.right;
+            } else if (node.right == null) {
+                return node.left;
+            }else{
+               int min = getMinimumInRightSubtree(node.right);
+               node.data = min;
+               node.right = deleteHelper(node.right, min);
+               return node;
+            }
+
+        }else if(node.data > data){
+            node.left = deleteHelper(node.left, data);
+        }else{
+            node.right = deleteHelper(node.right, data);
+        }
+        return node;
+    }
+
+    private int getMinimumInRightSubtree(Node node) {
+        if (node.left != null){
+            return getMinimumInRightSubtree(node.left);
+        }else {
+            return node.data;
+        }
     }
 
 

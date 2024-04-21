@@ -16,7 +16,17 @@ public class Main {
         bst.addNode(9);
         bst.addNode(1);
 
-        bst.inorderTraversal();
+        bst.inorderRecursive();
+//        bst.inorderIterative();
 
+//        bst.preOrderIterative();
+//        bst.preOrderRecursive();
+//
+//        bst.postOrderRecursive();
+//        bst.postOrderIterative();
+
+        bst.deleteNode(3);
+
+        bst.inorderIterative();
      }
 }
