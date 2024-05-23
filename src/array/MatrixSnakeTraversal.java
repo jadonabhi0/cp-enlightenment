@@ -33,7 +33,7 @@ public class MatrixSnakeTraversal {
                     col++;
                 }
                 System.out.println(ans);
-            }else { //  print the lower part of array.matrix
+            }else { //  print the lower part of array.matrix 
                 col = a;
                 row = rows-1;
                 String ans = "";
