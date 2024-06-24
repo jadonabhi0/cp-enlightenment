@@ -16,6 +16,8 @@ public class Main {
         bst.addNode(9);
         bst.addNode(1);
 
+
+        
         bst.inorderRecursive();
 //        bst.inorderIterative();
 
